@@ -19,10 +19,15 @@ export class RouterService {
   messagerie: boolean = false;
   clients: boolean = false;
   plugins: boolean = false;
-
+  auth: boolean = false;
   activateDashboard() {
     this.dashboard = true;
   }
+
+  activateAuthentication() {
+    this.auth = true;
+  }
+
   activateMessagerie() {
     this.messagerie = true;
   }
@@ -42,23 +47,23 @@ export class RouterService {
     this.clients = false;
     this.plugins = false;
     this.clients = false;
+    this.auth = false;
   }
 
   activatedRoute(url: string) {
+    this.disableAll();
     if(url === '/dashboard') {
-      this.disableAll();
       this.activateDashboard();
+    } else if(
+      url.startsWith('/dashboard/authentications/list') || url.startsWith('/dashboard/authentications/type')) {
+      this.activateAuthentication();
     } else if (url.startsWith('/dashboard/clients')) {
-      this.disableAll();
       this.activateClients();
     } else if (url.startsWith('/dashboard/messagerie')) {
-      this.disableAll();
       this.activateMessagerie();
     } else if (url.startsWith('/dashboard/streaming')) {
-      this.disableAll();
       this.activateStreaming();
     } else if (url.startsWith('/dashboard/plugins')) {
-      this.disableAll();
       this.activatePlugins();
     }
   }
