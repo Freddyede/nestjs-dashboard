@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-authentications',
-  imports: [
-    RouterLink
-  ],
+  imports: [],
   templateUrl: './authentications.component.html',
   styleUrl: './authentications.component.less'
 })
