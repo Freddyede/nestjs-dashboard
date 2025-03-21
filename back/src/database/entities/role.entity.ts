@@ -11,6 +11,8 @@ export class Role {
   id: number;
   @Column()
   name: string;
+  @Column({ type: 'text', nullable: true, default: null })
+  access_token: string;
   @Column({ type: 'datetime', default: Date.now() })
   @CreateDateColumn()
   createdAt: Date;
