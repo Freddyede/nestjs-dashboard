@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {filter} from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class RouterService {
 
   constructor(private router: Router) {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
+      filter(event => event instanceof NavigationStart)
     ).subscribe(event => {
       this.activatedRoute(event.url);
     });
@@ -55,7 +55,7 @@ export class RouterService {
     if(url === '/dashboard') {
       this.activateDashboard();
     } else if(
-      url.startsWith('/dashboard/authentications/list') || url.startsWith('/dashboard/authentications/type')) {
+      url.startsWith('/dashboard/authentications/list') || url.startsWith('/dashboard/authentications/session')) {
       this.activateAuthentication();
     } else if (url.startsWith('/dashboard/clients')) {
       this.activateClients();

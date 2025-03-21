@@ -1,6 +1,21 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark h-100 min-vh-100" style="width: 280px;">
   <a [routerLink]="'dashboard'" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <span class="fs-4">Sidebar</span>
+    <span class="fs-4 text-center" style="width: 250px;">
+      @if (routerService.dashboard) {
+          Dashboard
+      } @else if (routerService.auth) {
+        Session Manager
+      } @else if (routerService.messagerie) {
+        Messageries Manager
+      } @else if (routerService.clients) {
+        Clients Manager
+      } @else if (routerService.streaming) {
+        Streaming Manager
+      } @else if (routerService.plugins) {
+        Plugins Manager
+      }
+    </span>
+
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
@@ -11,7 +26,7 @@
     </li>
     <li>
       <a [routerLink]="'dashboard/authentications/list'" [class]="routerService.auth ? 'nav-link active' : 'nav-link text-white'">
-        <i class="fas fa-unlock-keyhole"></i> Authentications
+        <i class="fas fa-lock"></i> Session
       </a>
     </li>
     <li class="nav-item">
