@@ -26,15 +26,17 @@ export class UserFormService {
    * @author Patouillard Franck<patouillardfranck.development@gmail.com>
    */
   validate() {
-    const headers = new HttpHeaders();
     const tokenStorage = localStorage.getItem('token');
     const userStorage = localStorage.getItem('user');
     const userStorageObject = userStorage ? JSON.parse(userStorage) : undefined;
     if (tokenStorage && userStorage) {
-      headers.set('Authorization', 'Bearer ' + tokenStorage);
-      headers.set('Access', JSON.stringify(userStorageObject.roles));
     }
     console.log(this.user.value);
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${tokenStorage}`,
+      'Access': userStorageObject.roles.access_token,
+      'Content-Type': 'application/json'
+    });
     this.http.post<User>('http://localhost:3000/dashboard/auth/login', this.user.value, {headers: headers}).subscribe((res: any) => {
       console.log(res);
     })
