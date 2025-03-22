@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  avatar: string | undefined;
+  email: string = '';
   constructor(
     private http: HttpClient,
     private router: Router
@@ -18,12 +20,14 @@ export class AuthService {
     return this.http.post<User>('http://localhost:3000/dashboard/auth/login', {email, password})
     .subscribe((res: any) => {
       localStorage.setItem('user', JSON.stringify(res.data.user));
+      this.avatar = res.data.user.avatar;
+      this.email = res.data.user.email.toString();
       localStorage.setItem('token', res.data.token);
       this.router.navigateByUrl('dashboard').then();
     });
   }
   logout() {
     localStorage.clear();
-    this.router.navigate(['/']).then();
+    window.location.reload();
   }
 }

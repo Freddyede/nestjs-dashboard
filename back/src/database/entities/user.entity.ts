@@ -12,9 +12,9 @@ import { Role } from './role.entity';
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
-  @ManyToOne(() => Role, { orphanedRowAction: null })
+  @ManyToOne(() => Role, { orphanedRowAction: null, nullable: true })
   @JoinColumn({ name: 'role_id' })
-  roles: Role[];
+  roles: Role;
   @Column({ type: 'text', default: null })
   avatar?: string;
   @Column({ unique: true })
@@ -24,6 +24,6 @@ export class User {
   @Column({ type: 'datetime', default: Date.now() })
   @CreateDateColumn()
   createdAt: Date;
-  @Column({ type: 'datetime', default: null })
+  @Column({ type: 'datetime', nullable: true, default: null })
   deletedAt: Date;
 }

@@ -12,6 +12,10 @@ import {RouterService} from '../../router.service';
   styleUrl: './sidebar.component.less'
 })
 export class SidebarComponent {
-
   constructor(protected authService: AuthService, protected routerService: RouterService) { }
+  getEmail(): string {
+    const userString: string | null = localStorage.getItem('user');
+    const user = userString !== null && JSON.parse(userString);
+    return user.email;
+  }
 }
