@@ -18,4 +18,11 @@ export class UserRepository extends Repository<User> {
       .where('u.email = :email', { email })
       .getOneOrFail();
   }
+  findAllExceptEmail(email: string): Promise<User[]> {
+    return this.userRepository
+      .createQueryBuilder('u')
+      .leftJoinAndSelect('u.roles', 'roles')
+      .where('u.email != :email', { email })
+      .getMany();
+  }
 }
