@@ -16,8 +16,8 @@ export class Role {
   @Column({ type: 'datetime', default: Date.now() })
   @CreateDateColumn()
   createdAt: Date;
-  @Column({ type: 'datetime', default: null })
+  @Column({ type: 'datetime', nullable: true, default: null })
   updatedAt: Date;
-  @Column({ type: 'datetime', default: null })
+  @Column({ type: 'datetime', nullable: true, default: null })
   deletedAt: Date;
 }
