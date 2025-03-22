@@ -37,7 +37,7 @@ export class UserFormService {
       'Access': userStorageObject.roles.access_token,
       'Content-Type': 'application/json'
     });
-    this.http.post<User>('http://localhost:3000/dashboard/auth/login', this.user.value, {headers: headers}).subscribe((res: any) => {
+    this.http.post<User>('http://localhost:3000/dashboard/auth/register', this.user.value, {headers: headers}).subscribe((res: any) => {
       console.log(res);
     })
   }
