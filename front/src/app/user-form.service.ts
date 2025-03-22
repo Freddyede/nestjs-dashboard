@@ -13,7 +13,9 @@ export class UserFormService {
     this.user = this.fb.group({
       email: ['',Validators.required],
       password: ['',Validators.required],
-      roleName: ['',Validators.required]
+      roleName: ['',Validators.required],
+      roleType: ['',Validators.required],
+      accessType: ['',Validators.required],
     });
   }
 

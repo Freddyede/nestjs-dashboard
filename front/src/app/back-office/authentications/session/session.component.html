@@ -7,20 +7,38 @@
       <div class="d-flex justify-content-center align-items-center flex-column">
         <legend class="text-center text-white">Login</legend>
         <div class="form-floating mt-5 mb-5 col-10">
-          <input type="email" formControlName="email" class="form-control" id="floatingEmail" placeholder="name@example.com" />
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="floatingEmail"
+            placeholder="name@example.com" />
           <label for="floatingEmail">Email address</label>
         </div>
         <div class="form-floating col-10 mb-5">
-          <input type="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="root" />
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="root" />
           <label for="floatingPassword">Mot de passe</label>
         </div>
-        <div class="form-floating col-10">
-          <select type="password" formControlName="roleName" class="form-select" id="floatingSelect">
+        <div class="form-floating col-10 mb-5">
+          <select formControlName="roleName" class="form-select" id="floatingSelect">
             <option value="" selected="selected">-- Veuillez sélectionner un rôle --</option>
             <option value="ADMIN">Admin</option>
             <option value="USER">Utilisateurs</option>
           </select>
           <label for="floatingSelect">Roles</label>
+        </div>
+        <div class="form-floating col-10 mb-5">
+          <select formControlName="accessType" class="form-select" id="floatingAccessType">
+            <option value="" selected="selected">-- Veuillez sélectionner un type de jeton d'accès --</option>
+            <option value="BEARER">Bearer</option>
+            <option value="JWT">Json Web Token</option>
+          </select>
+          <label for="floatingAccessType">Access Type</label>
         </div>
       </div>
       <div class="col-12 mt-5 d-flex justify-content-center align-items-center">

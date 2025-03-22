@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {UserFormService} from '../../../user-form.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserFormService } from '../../../user-form.service';
 
 @Component({
   selector: 'app-session',
