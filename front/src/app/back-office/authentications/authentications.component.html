@@ -18,19 +18,19 @@
       <tbody>
         @for (user of users; track user.id) {
           <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.roles?.name }}</td>
+            <td class="text-center">{{ user.id }}</td>
+            <td class="text-center">{{ user.email }}</td>
+            <td class="text-center">{{ user.roles?.name }}</td>
             <td>
-              <div class="d-flex justify-content around align-items-center">
+              <div class="d-flex justify-content-around align-items-center">
                 <div>
-                  <button><i class="fas fa-pencil"></i></button>
+                  <a class="text-white"><i class="fas fa-book"></i></a>
                 </div>
                 <div>
-                  <button><i class="fas fa-book"></i></button>
+                  <a class="text-white"><i class="fas fa-pencil"></i></a>
                 </div>
                 <div>
-                  <button><i class="fas fa-trash"></i></button>
+                  <a class="text-white"><i class="fas fa-trash"></i></a>
                 </div>
               </div>
             </td>

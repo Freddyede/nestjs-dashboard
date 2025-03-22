@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { IUser } from '../../users';
 import {RouterLink} from '@angular/router';
 import {UserFormService} from '../../user-form.service';
 
@@ -12,12 +11,12 @@ import {UserFormService} from '../../user-form.service';
   styleUrl: './authentications.component.less'
 })
 export class AuthenticationsComponent implements OnInit {
-  users: IUser[] | undefined = [];
+  users: any[] | undefined = [];
   constructor(public userFormService: UserFormService) {
   }
   ngOnInit() {
     this.userFormService.getUsers().subscribe((res: any) => {
-      console.log(res);
+      this.users = res.data.sort((prevUser: any, nextUser: any): number => prevUser.id - nextUser.id);
     });
   }
 }
