@@ -31,7 +31,6 @@ export class UserFormService {
     const tokenStorage = localStorage.getItem('token');
     const userStorage = localStorage.getItem('user');
     const userStorageObject = userStorage ? JSON.parse(userStorage) : undefined;
-    console.log(this.user.value);
     let headers = new HttpHeaders({
       'Authorization': `Bearer ${tokenStorage}`,
       'Access': userStorageObject.roles.access_token,
@@ -39,6 +38,7 @@ export class UserFormService {
     });
     this.http.post<User>('http://localhost:3000/dashboard/auth/register', this.user.value, {headers: headers}).subscribe((res: any) => {
       if (res.status === 201 && res.message === 'User registered successfully!') {
+        this.user.reset();
         this.router.navigateByUrl('dashboard/authentications/list').then();
       }
     })
@@ -53,5 +53,31 @@ export class UserFormService {
       'Content-Type': 'application/json'
     });
     return this.http.get('http://localhost:3000/users/list', {headers: headers});
+  }
+  getUser(id: string)  {
+    const tokenStorage = localStorage.getItem('token');
+    const userStorage = localStorage.getItem('user');
+    const userStorageObject = userStorage ? JSON.parse(userStorage) : undefined;
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${tokenStorage}`,
+      'Access': userStorageObject.roles.access_token,
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(`http://localhost:3000/users/list/${parseInt(id)}`, {headers: headers});
+  }
+  deleteUser(id: string)  {
+    const tokenStorage = localStorage.getItem('token');
+    const userStorage = localStorage.getItem('user');
+    const userStorageObject = userStorage ? JSON.parse(userStorage) : undefined;
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${tokenStorage}`,
+      'Access': userStorageObject.roles.access_token,
+      'Content-Type': 'application/json'
+    });
+    this.http.delete(`http://localhost:3000/users/${id}`, {headers: headers}).subscribe((res: any) => {
+      if (res.status === 204 && res.message === 'User deleted successfully.') {
+        window.location.reload();
+      }
+    });
   }
 }

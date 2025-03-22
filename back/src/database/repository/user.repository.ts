@@ -18,6 +18,7 @@ export class UserRepository extends Repository<User> {
       .where('u.email = :email', { email })
       .getOneOrFail();
   }
+
   findAllExceptEmail(email: string): Promise<User[]> {
     return this.userRepository
       .createQueryBuilder('u')

@@ -24,13 +24,10 @@
             <td>
               <div class="d-flex justify-content-around align-items-center">
                 <div>
-                  <a class="text-white"><i class="fas fa-book"></i></a>
+                  <a class="text-white" [routerLink]="'/dashboard/authentications/list/'+ user.id.toString()"><i class="fas fa-book"></i></a>
                 </div>
                 <div>
-                  <a class="text-white"><i class="fas fa-pencil"></i></a>
-                </div>
-                <div>
-                  <a class="text-white"><i class="fas fa-trash"></i></a>
+                  <span (click)="userFormService.deleteUser(user.id.toString())" class="text-white"><i class="fas fa-trash"></i></span>
                 </div>
               </div>
             </td>

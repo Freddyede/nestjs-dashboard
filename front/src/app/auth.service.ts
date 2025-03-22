@@ -22,7 +22,6 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       this.avatar = res.data.user.avatar;
       this.email = res.data.user.email.toString();
-      console.log(this.email);
       localStorage.setItem('token', res.data.token);
       this.router.navigateByUrl('dashboard').then();
     });

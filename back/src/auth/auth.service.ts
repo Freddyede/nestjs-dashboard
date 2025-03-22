@@ -43,7 +43,6 @@ export class AuthService {
     });
     userDatabase.createdAt = new Date();
     userDatabase.deletedAt = null;
-    console.log('us', userDatabase.roles);
     await this.userRepository.save(userDatabase);
     return {
       status: HttpStatus.CREATED,
