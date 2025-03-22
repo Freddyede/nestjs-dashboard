@@ -31,7 +31,7 @@ export class UserFormService {
     const userStorage = localStorage.getItem('user');
     const userStorageObject = userStorage ? JSON.parse(userStorage) : undefined;
     if (tokenStorage && userStorage) {
-      headers.set('Authorization', tokenStorage);
+      headers.set('Authorization', 'Bearer ' + tokenStorage);
       headers.set('Access', JSON.stringify(userStorageObject.roles));
     }
     console.log(this.user.value);
