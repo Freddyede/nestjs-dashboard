@@ -7,6 +7,7 @@ import { UserRepository } from '../database/repository/user.repository';
 import { DatabaseModule } from '../database/database.module';
 import { RoleRepository } from '../database/repository/role.repository';
 import { AuthGuard } from '../guards/auth.guard';
+import {AccessGuard} from "../guards/access.guard";
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { AuthGuard } from '../guards/auth.guard';
     RoleRepository,
     {
       provide: AuthGuard,
-      useClass: AuthGuard,
+      useClass: AccessGuard,
     },
   ],
 })
