@@ -4,7 +4,8 @@ import { UsersService } from './users.service';
 import { DatabaseModule } from '../database/database.module';
 import { UserRepository } from '../database/repository/user.repository';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from '../auth/auth.guard';
+import { AccessGuard } from '../guards/access.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Module({
   imports: [DatabaseModule],
@@ -15,6 +16,10 @@ import { AuthGuard } from '../auth/auth.guard';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AccessGuard,
     },
   ],
 })
