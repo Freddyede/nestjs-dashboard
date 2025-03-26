@@ -11,6 +11,8 @@
         Clients Manager
       } @else if (routerService.streaming) {
         Streaming Manager
+      } @else if (routerService.roles) {
+        Roles Manager
       } @else if (routerService.plugins) {
         Plugins Manager
       }
@@ -24,24 +26,38 @@
         <i class="fas fa-chart-line"></i> Dashboard
       </a>
     </li>
+    <li class="nav-item">
+      <p class="btn btn-toggle my-0 text-start" [class]="(routerService.streaming || routerService.messagerie) ? 'nav-link active' : 'nav-link text-white'" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+        <i class="fas fa-file"></i> Pages
+      </p>
+      <div id="account-collapse">
+        <ul class="btn-toggle-nav ps-1 list-unstyled pt-1 pb-1 w-75 m-auto fw-normal small">
+          <li>
+            <p [routerLink]="'dashboard/streaming'" aria-current="page">
+              Streaming
+            </p>
+          </li>
+          <li>
+            <p [routerLink]="'dashboard/messagerie'">
+              Messageries
+            </p>
+          </li>
+        </ul>
+      </div>
+    </li>
     <li>
       <a [routerLink]="'dashboard/authentications/list'" [class]="routerService.auth ? 'nav-link active' : 'nav-link text-white'">
         <i class="fas fa-lock"></i> Session
       </a>
     </li>
-    <li class="nav-item">
-      <a [routerLink]="'dashboard/streaming'" [class]="routerService.streaming ? 'nav-link active' : 'nav-link text-white'" aria-current="page">
-        <i class="fas fa-life-ring"></i> Streaming
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="'dashboard/messagerie'" [class]="routerService.messagerie ? 'nav-link active' : 'nav-link text-white'">
-        <i class="fas fa-comments"></i> Messageries
-      </a>
-    </li>
     <li>
       <a [routerLink]="'dashboard/clients'" [class]="routerService.clients ? 'nav-link active' : 'nav-link text-white'">
         <i class="fas fa-users"></i> Clients
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="'dashboard/roles'" [class]="routerService.roles ? 'nav-link active' : 'nav-link text-white'">
+        <i class="fas fa-shield-halved"></i> Roles
       </a>
     </li>
     <li>

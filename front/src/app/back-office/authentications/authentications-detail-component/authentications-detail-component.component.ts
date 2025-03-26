@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {UserFormService} from '../../../user-form.service';
 import {DatePipe, NgIf} from '@angular/common';
 
@@ -7,7 +7,7 @@ import {DatePipe, NgIf} from '@angular/common';
   selector: 'app-authentications-detail-component',
   imports: [
     DatePipe,
-    NgIf
+    NgIf,
   ],
   templateUrl: './authentications-detail-component.component.html',
   styleUrl: './authentications-detail-component.component.less'
