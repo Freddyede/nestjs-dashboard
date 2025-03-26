@@ -7,6 +7,8 @@ import { PluginsComponent } from './back-office/plugins/plugins.component';
 import { StreamingComponent } from './back-office/streaming/streaming.component';
 import { boClientsRoutes } from './back-office/bo-clients/bo-clients.routes';
 import { authenticationRoutes } from './back-office/authentications/authentications.routes';
+import {RolesComponent} from './back-office/roles/roles.component';
+import {RolesAddedComponent} from './back-office/roles-added/roles-added.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,4 +18,6 @@ export const routes: Routes = [
   ...boClientsRoutes,
   ...authenticationRoutes,
   { path: 'dashboard/plugins', component: PluginsComponent, canActivate: [authGuard] },
+  { path: 'dashboard/roles', component: RolesComponent, canActivate: [authGuard] },
+  { path: 'dashboard/roles/add', component: RolesAddedComponent, canActivate: [authGuard] },
 ];
