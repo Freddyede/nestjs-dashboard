@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12 mb-5">
+    <h1 class="text-center mt-5 text-decoration-underline">Lecture de l'utilisateur n°{{ user?.id }}</h1>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-6 d-flex justify-content-center align-items-center flex-column" style="height: 83vh;">
+        <h2 class="text-center text-decoration-underline mb-5">User</h2>
+        <p class="text-center">Email: {{user?.email}}</p>
+        <p class="text-center" *ngIf="user?.createdAt">Date de création: {{user?.createdAt | date: "dd/mm/YYYY"}}</p>
+        <p class="text-center" *ngIf="user?.deletedAt">Date de suppression: {{user?.deletedAt | date: "dd/mm/YYYY"}}</p>
+      </div>
+      <div class="col-6 d-flex justify-content-center align-items-center flex-column" style="height: 83vh;">
+        <h2 class="text-center text-decoration-underline mb-5">Roles</h2>
+        <p class="text-center">Name: {{user?.roles.name}}</p>
+        <p class="text-center" *ngIf="user?.roles.createdAt">Date de création: {{user?.roles.createdAt | date: "dd/mm/YYYY"}}</p>
+        <p class="text-center" *ngIf="user?.roles.deletedAt">Date de suppression: {{user?.roles.deletedAt | date: "dd/mm/YYYY"}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,23 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark h-100 min-vh-100" style="width: 280px;">
   <a [routerLink]="'dashboard'" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <span class="fs-4">Sidebar</span>
+    <span class="fs-4 text-center" style="width: 250px;">
+      @if (routerService.dashboard) {
+          Dashboard
+      } @else if (routerService.auth) {
+        Session Manager
+      } @else if (routerService.messagerie) {
+        Messageries Manager
+      } @else if (routerService.clients) {
+        Clients Manager
+      } @else if (routerService.streaming) {
+        Streaming Manager
+      } @else if (routerService.roles) {
+        Roles Manager
+      } @else if (routerService.plugins) {
+        Plugins Manager
+      }
+    </span>
+
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
@@ -10,18 +27,37 @@
       </a>
     </li>
     <li class="nav-item">
-      <a [routerLink]="'dashboard/streaming'" [class]="routerService.streaming ? 'nav-link active' : 'nav-link text-white'" aria-current="page">
-        <i class="fas fa-life-ring"></i> Streaming
-      </a>
+      <p class="btn btn-toggle my-0 text-start" [class]="(routerService.streaming || routerService.messagerie) ? 'nav-link active' : 'nav-link text-white'" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+        <i class="fas fa-file"></i> Pages
+      </p>
+      <div id="account-collapse">
+        <ul class="btn-toggle-nav ps-1 list-unstyled pt-1 pb-1 w-75 m-auto fw-normal small">
+          <li>
+            <p [routerLink]="'dashboard/streaming'" aria-current="page">
+              Streaming
+            </p>
+          </li>
+          <li>
+            <p [routerLink]="'dashboard/messagerie'">
+              Messageries
+            </p>
+          </li>
+        </ul>
+      </div>
     </li>
     <li>
-      <a [routerLink]="'dashboard/messagerie'" [class]="routerService.messagerie ? 'nav-link active' : 'nav-link text-white'">
-        <i class="fas fa-comments"></i> Messageries
+      <a [routerLink]="'dashboard/authentications/list'" [class]="routerService.auth ? 'nav-link active' : 'nav-link text-white'">
+        <i class="fas fa-lock"></i> Session
       </a>
     </li>
     <li>
       <a [routerLink]="'dashboard/clients'" [class]="routerService.clients ? 'nav-link active' : 'nav-link text-white'">
         <i class="fas fa-users"></i> Clients
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="'dashboard/roles'" [class]="routerService.roles ? 'nav-link active' : 'nav-link text-white'">
+        <i class="fas fa-shield-halved"></i> Roles
       </a>
     </li>
     <li>
@@ -33,8 +69,12 @@
   <hr>
   <div class="dropdown">
     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-      <strong>mdo</strong>
+      @if (authService.avatar === undefined) {
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      } @else {
+        <img src="{{authService.avatar}}" alt="" width="32" height="32" class="rounded-circle me-2">
+      }
+      <strong>{{getEmail()}}</strong>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
       <li><a class="dropdown-item" href="#">New project...</a></li>
