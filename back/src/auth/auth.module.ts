@@ -6,6 +6,7 @@ import 'dotenv/config';
 import { UserRepository } from '../database/repository/user.repository';
 import { DatabaseModule } from '../database/database.module';
 import { RoleRepository } from '../database/repository/role.repository';
+import { AuthGuard } from './auth.guard';
 
 @Module({
   imports: [
@@ -24,6 +25,14 @@ import { RoleRepository } from '../database/repository/role.repository';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserRepository, RoleRepository],
+  providers: [
+    AuthService,
+    UserRepository,
+    RoleRepository,
+    {
+      provide: AuthGuard,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AuthModule {}
