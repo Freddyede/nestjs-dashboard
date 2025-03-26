@@ -19,7 +19,7 @@ export class CompositeGuard implements CanActivate {
     if (!hasAccess) {
       throw new UnauthorizedException();
     }
-    const isAuthenticated = await this.accessGuard.canActivate(context);
+    const isAuthenticated = await this.authGuard.canActivate(context);
     if (!isAuthenticated) {
       throw new UnauthorizedException();
     }

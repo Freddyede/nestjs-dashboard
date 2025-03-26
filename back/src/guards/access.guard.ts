@@ -29,7 +29,10 @@ export class AccessGuard implements CanActivate {
     }
     const decodedToken = await this.jwtService.decode(access);
     return (
-      decodedToken.name === process.env.TOKEN_NAME &&
+      (decodedToken.name === process.env.TOKEN_SUPER_ADMIN_NAME ||
+        decodedToken.name === process.env.TOKEN_ADMIN_NAME ||
+        decodedToken.name === process.env.TOKEN_STAFF_NAME ||
+        decodedToken.name === process.env.TOKEN_DEVELOPER_NAME) &&
       decodedToken.iat === +process.env.TOKEN_IAT
     );
   }
