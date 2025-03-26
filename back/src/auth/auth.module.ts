@@ -7,7 +7,9 @@ import { UserRepository } from '../database/repository/user.repository';
 import { DatabaseModule } from '../database/database.module';
 import { RoleRepository } from '../database/repository/role.repository';
 import { APP_GUARD } from '@nestjs/core';
+import { CompositeGuard } from '../guards/composite.guard';
 import { AccessGuard } from '../guards/access.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Module({
   imports: [
@@ -30,9 +32,11 @@ import { AccessGuard } from '../guards/access.guard';
     AuthService,
     UserRepository,
     RoleRepository,
+    AuthGuard,
+    AccessGuard,
     {
       provide: APP_GUARD,
-      useClass: AccessGuard,
+      useClass: CompositeGuard,
     },
   ],
 })
