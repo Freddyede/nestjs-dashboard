@@ -23,7 +23,6 @@ export class AuthService {
       },
     })
     .subscribe((res: any) => {
-      console.log(res);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       this.avatar = res.data.user.avatar;
       this.email = res.data.user.email.toString();
