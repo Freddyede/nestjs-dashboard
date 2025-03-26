@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12 mt-5 mb-5">
+    <h1 class="text-center text-decoration-underline">Roles Creation</h1>
+  </div>
+  <div class="col-md-10 offset-md-1 col-12">
+    <form [formGroup]="roleService.role">
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <legend class="text-center text-white">Login</legend>
+        <div class="form-floating mt-5 mb-5 col-10">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="floatingName"
+            value=""
+            placeholder="ADMINISTRATEUR" />
+          <label for="floatingName">Nom du rôle</label>
+        </div>
+        <div class="form-floating mt-5 mb-5 col-10">
+          <input
+            type="text"
+            formControlName="access_token"
+            class="form-control"
+            id="floatingAccessToken"
+            value=""
+            placeholder="ADMINISTRATEUR" />
+          <label for="floatingAccessToken">Jeton d'accès</label>
+        </div>
+      </div>
+      <div class="col-12 mt-5 d-flex justify-content-center align-items-center">
+        <button class="btn btn-primary" (click)="roleService.validateRole()">Soumettre</button>
+      </div>
+    </form>
+  </div>
+</div>
