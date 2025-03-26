@@ -1,13 +1,24 @@
 import { HttpStatus, Injectable, Param, Req } from '@nestjs/common';
 import { UserRepository } from '../database/repository/user.repository';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly userRepository: UserRepository,
+  ) {}
+
+  private async getUserConnected(req: Request): Promise<any> {
+    return await this.jwtService.verifyAsync(
+      req.headers['authorization'].split(' ')[1],
+    );
+  }
 
   async getAll(@Req() req: Request) {
+    const user: any = await this.getUserConnected(req);
     return {
-      data: await this.userRepository.findAllExceptEmail(req['user'].email),
+      data: await this.userRepository.findAllExceptEmail(user.email),
       status: HttpStatus.OK,
     };
   }
