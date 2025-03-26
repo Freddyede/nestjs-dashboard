@@ -6,7 +6,7 @@ import 'dotenv/config';
 import { UserRepository } from '../database/repository/user.repository';
 import { DatabaseModule } from '../database/database.module';
 import { RoleRepository } from '../database/repository/role.repository';
-import { AuthGuard } from '../guards/auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 import { AccessGuard } from '../guards/access.guard';
 
 @Module({
@@ -31,7 +31,7 @@ import { AccessGuard } from '../guards/access.guard';
     UserRepository,
     RoleRepository,
     {
-      provide: AuthGuard,
+      provide: APP_GUARD,
       useClass: AccessGuard,
     },
   ],
