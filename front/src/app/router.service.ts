@@ -18,6 +18,7 @@ export class RouterService {
   streaming: boolean = false;
   messagerie: boolean = false;
   clients: boolean = false;
+  roles: boolean = false;
   plugins: boolean = false;
   auth: boolean = false;
   activateDashboard() {
@@ -37,6 +38,9 @@ export class RouterService {
   activateClients() {
     this.clients = true;
   }
+  activateRoles() {
+    this.roles = true;
+  }
   activatePlugins() {
     this.plugins = true;
   }
@@ -46,6 +50,7 @@ export class RouterService {
     this.messagerie = false;
     this.clients = false;
     this.plugins = false;
+    this.roles = false;
     this.clients = false;
     this.auth = false;
   }
@@ -63,7 +68,9 @@ export class RouterService {
       this.activateMessagerie();
     } else if (url.startsWith('/dashboard/streaming')) {
       this.activateStreaming();
-    } else if (url.startsWith('/dashboard/plugins')) {
+    } else if (url.startsWith('/dashboard/roles')){
+      this.activateRoles();
+    }else if (url.startsWith('/dashboard/plugins')) {
       this.activatePlugins();
     }
   }
